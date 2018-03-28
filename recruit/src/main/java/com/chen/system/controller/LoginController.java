@@ -17,4 +17,10 @@ public class LoginController {
 		return "/system/login/login";
 	}
 	
+	@RequestMapping("/login")
+	public String login() {
+		return "/system/login/login_main";
+	}
+	
+	
 }
