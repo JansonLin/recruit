@@ -1,0 +1,18 @@
+.icon-application-order{
+	background: url(../../images/order.png) no-repeat;
+    background-size: 93%;
+}
+.icon-application-liangfangshangji{
+	background: url(../../images/liangfang.png) no-repeat;
+}
+.icon-application-qudaohezuoshangji{
+	background: url(../../images/qudao.png) no-repeat;
+    background-size: 95%;
+}
+.icon-application-baobiao{
+	background: url(../../images/baobiao.png) no-repeat;
+}
+.icon-application-xitongshezhi{
+	background: url(../../images/xitongshezhi.png) no-repeat;
+	background-size: 105%;
+}
