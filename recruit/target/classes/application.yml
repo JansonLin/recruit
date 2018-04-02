@@ -16,7 +16,7 @@ spring:
 
 # DATASOURCE  
 datasource:  
-  url: jdbc:mysql://127.0.0.1:3306/recruit?useUnicode=true&characterEncoding=utf-8
+  url: jdbc:mysql://127.0.0.1:3306/recruit?useUnicode=true&characterEncoding=utf-8&useSSL=true
   username: root  
   password: root  
   # 使用druid数据源  
@@ -51,4 +51,10 @@ datasource:
 mybatis:
   typeAliasesPackage: com.chen.*.entity
   mapperLocations: com/chen/**/mapper/*.xml 
+  
+# 打印sql
+logging:
+  level:
+     com.chen.*.mapper : debug  
+  
      

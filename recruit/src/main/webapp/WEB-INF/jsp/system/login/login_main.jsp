@@ -12,10 +12,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>蜗牛人才网</title>
 
-<link rel="stylesheet" href="<%=basePath%>resourcess/css/common/reset.css">
-<link rel="stylesheet" href="<%=basePath%>resourcess/css/easyui/easyui.css">
-<link rel="stylesheet" href="<%=basePath%>resourcess/css/ztree/zTreeStyle.css">
-<link rel="stylesheet" href="<%=basePath%>resourcess/css/main.css">
+<link rel="stylesheet" href="<%=basePath%>resources/css/common/reset.css">
+<link rel="stylesheet" href="<%=basePath%>resources/easyui/themes/metro/easyui.css">
+<link rel="stylesheet" href="<%=basePath%>resources/ztree/zTreeStyle.css">
+<link rel="stylesheet" href="<%=basePath%>resources/css/main.css">
 </head>
 <body class="easyui-layout" data-options='collapsible:true'>
     <!--头部banner start-->
@@ -35,7 +35,7 @@
     <!--左边 树形导航-->
     <div class="wu-sidebar" data-options="region:'west',split:true,border:true,title:' '">
         <div class="easyui-accordion"  id="accordionid" data-options="border:false,fit:true">
-    
+            
 
         </div>
     </div>
@@ -56,12 +56,12 @@
 <script type="text/javascript">
 	var orgId = '${user.orgId}';
 </script> 
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resourcess/js/common/jquery-2.2.0.min.js"></script>
-<script src="<%=basePath%>resourcess/js/common/less.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resourcess/js/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resourcess/js/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resourcess/js/common/common.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resourcess/js/main/main.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>
+<script src="<%=basePath%>resources/js/common/less.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/common/common.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/login/login_main.js"></script>
 
 
 

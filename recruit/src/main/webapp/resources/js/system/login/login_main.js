@@ -18,21 +18,20 @@
 */
 $(function(){
 	$.ajax({
-		url:'rootTree',  
-        data:{orgId:orgId},
+		url:'/system/sysResource/rootTree',  
         type:'post',  
         dataType:'json', 
         success:function(data){
         	console.log(data);
         	$.each(data,function(i,menu){
         		$('#accordionid').accordion('add', {
-                    title: menu.name,
+                    title: menu.resourceName,
                     content: "<ul class='easyui-tree multistageTree' id='tree"+i+"'  data-options='lines:false' ></ul>",
                     selected: true,
                 });
                 $.parser.parse();
                 $("#tree" + i).tree({
-            	    url: "tree?id="+menu.id,		
+            	    url: "/system/sysResource/tree?id="+menu.id,		
             		onClick: function(node){
             	       if (node.state == 'closed'){  
                          $(this).tree('expand', node.target);  
@@ -51,8 +50,9 @@ $(function(){
                     onLoadSuccess:function(node, data)  {  
                        $("#tree" + i).tree("collapseAll"); 
                        if(i==0){ //默认选中第一个
-	                    	var tree = data[0].children[0];  
-	                    	var n = $('#tree0').tree('find', data[0].children[0].id);
+                    	   console.log(data[0]);
+	                    	var tree = data[0];  
+	                    	var n = $('#tree0').tree('find', data[0].id);
 	                       	//调用选中事件
 	                       	$('#tree0').tree('expandTo', n.target); 
 	                       	addTab(tree.text,tree.attributes.url,tree.iconcls,tree.id)

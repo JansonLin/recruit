@@ -196,10 +196,10 @@ sendLayer {
 
 /* ztree头部折叠和展开图标 */
 .layout-button-left {
-  background: url('easyui/images/treeHead_arrows.png') no-repeat 0 0;
+  background: url('../images/easyui/treeHead_arrows.png') no-repeat 0 0;
 }
 .layout-button-right {
-  background: url('easyui/images/treeHead_arrows.png') no-repeat -36px 0;
+  background: url('../images/easyui/treeHead_arrows.png') no-repeat -36px 0;
 }
 
 

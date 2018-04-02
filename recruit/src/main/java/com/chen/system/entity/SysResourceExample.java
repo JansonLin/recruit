@@ -506,73 +506,73 @@ public class SysResourceExample {
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeIsNull() {
-            addCriterion("PARENT_RESOURCE_CODE is null");
+        public Criteria andparentIdIsNull() {
+            addCriterion("PARENT_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeIsNotNull() {
-            addCriterion("PARENT_RESOURCE_CODE is not null");
+        public Criteria andparentIdIsNotNull() {
+            addCriterion("PARENT_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeEqualTo(String value) {
-            addCriterion("PARENT_RESOURCE_CODE =", value, "parentResourceCode");
+        public Criteria andparentIdEqualTo(Long value) {
+            addCriterion("PARENT_ID =", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeNotEqualTo(String value) {
-            addCriterion("PARENT_RESOURCE_CODE <>", value, "parentResourceCode");
+        public Criteria andparentIdNotEqualTo(Long value) {
+            addCriterion("PARENT_ID <>", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeGreaterThan(String value) {
-            addCriterion("PARENT_RESOURCE_CODE >", value, "parentResourceCode");
+        public Criteria andparentIdGreaterThan(Long value) {
+            addCriterion("PARENT_ID >", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeGreaterThanOrEqualTo(String value) {
-            addCriterion("PARENT_RESOURCE_CODE >=", value, "parentResourceCode");
+        public Criteria andparentIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("PARENT_ID >=", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeLessThan(String value) {
-            addCriterion("PARENT_RESOURCE_CODE <", value, "parentResourceCode");
+        public Criteria andparentIdLessThan(Long value) {
+            addCriterion("PARENT_ID <", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeLessThanOrEqualTo(String value) {
-            addCriterion("PARENT_RESOURCE_CODE <=", value, "parentResourceCode");
+        public Criteria andparentIdLessThanOrEqualTo(Long value) {
+            addCriterion("PARENT_ID <=", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeLike(String value) {
-            addCriterion("PARENT_RESOURCE_CODE like", value, "parentResourceCode");
+        public Criteria andparentIdLike(Long value) {
+            addCriterion("PARENT_ID like", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeNotLike(String value) {
-            addCriterion("PARENT_RESOURCE_CODE not like", value, "parentResourceCode");
+        public Criteria andparentIdNotLike(Long value) {
+            addCriterion("PARENT_ID not like", value, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeIn(List<String> values) {
-            addCriterion("PARENT_RESOURCE_CODE in", values, "parentResourceCode");
+        public Criteria andparentIdIn(List<Long> values) {
+            addCriterion("PARENT_ID in", values, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeNotIn(List<String> values) {
-            addCriterion("PARENT_RESOURCE_CODE not in", values, "parentResourceCode");
+        public Criteria andparentIdNotIn(List<Long> values) {
+            addCriterion("PARENT_ID not in", values, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeBetween(String value1, String value2) {
-            addCriterion("PARENT_RESOURCE_CODE between", value1, value2, "parentResourceCode");
+        public Criteria andparentIdBetween(Long value1, Long value2) {
+            addCriterion("PARENT_ID between", value1, value2, "parentId");
             return (Criteria) this;
         }
 
-        public Criteria andParentResourceCodeNotBetween(String value1, String value2) {
-            addCriterion("PARENT_RESOURCE_CODE not between", value1, value2, "parentResourceCode");
+        public Criteria andparentIdNotBetween(Long value1, Long value2) {
+            addCriterion("PARENT_ID not between", value1, value2, "parentId");
             return (Criteria) this;
         }
 

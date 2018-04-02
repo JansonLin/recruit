@@ -17,8 +17,8 @@ import com.chen.system.service.SysUserService;
  * @version 1.0v 2018年3月14日
  */
 @Controller
-@RequestMapping("/system/user")
-public class UserController {
+@RequestMapping("/system/sysUser")
+public class SysUserController {
     
 	@Autowired
 	private SysUserService sysUserService;

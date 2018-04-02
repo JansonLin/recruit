@@ -34,7 +34,7 @@ public class SysResource {
     /**
      * 上级资源编码
      */
-    private String parentResourceCode;
+    private String parentId;
 
     /**
      * 备注
@@ -119,15 +119,16 @@ public class SysResource {
         this.resourceLevel = resourceLevel;
     }
 
-    public String getParentResourceCode() {
-        return parentResourceCode;
-    }
 
-    public void setParentResourceCode(String parentResourceCode) {
-        this.parentResourceCode = parentResourceCode == null ? null : parentResourceCode.trim();
-    }
+    public String getParentId() {
+		return parentId;
+	}
 
-    public String getRemark() {
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getRemark() {
         return remark;
     }
 
