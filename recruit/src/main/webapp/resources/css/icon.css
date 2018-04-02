@@ -1,0 +1,32 @@
+/*-------------------------------------------------------
+ All Rights Reserved, Copyright (C) 2017, chencundeng, Ltd.
+-------------------------------------------------------*/
+
+
+.icon-ok{ background:url('icons/ok.png') no-repeat center center;}
+.icon-cancel{ background:url('icons/cancel.png') no-repeat center center;}
+.icon-film{ background:url('icons/film.png') no-repeat center center;}
+.icon-group{ background:url('icons/group.png') no-repeat center center;}
+.icon-house{ background:url('icons/house.png') no-repeat center center;}
+.icon-users{ background:url('icons/users.png') no-repeat center center;}
+.icon-date{ background:url('icons/date.png') no-repeat center center;}
+.icon-computer{ background:url('icons/computer.png') no-repeat center center;}
+.icon-cog{ background:url('icons/cog.png') no-repeat center center;}
+.icon-chart_organisation{ background:url('icons/chart_organisation.png') no-repeat center center;}
+.icon-chart_bar{ background:url('icons/chart_bar.png') no-repeat center center;}
+.icon-advancedsettings{ background:url('icons/advancedsettings.png') no-repeat center center;}
+.icon-book_open{ background:url('icons/book_open.png') no-repeat center center;}
+.icon-delete{ background:url('icons/delete.png') no-repeat center center;}
+.icon-email{ background:url('icons/email.png') no-repeat center center;}
+.icon-organization{ background:url('icons/organization.png') no-repeat center center;}
+.icon-print{ background:url('icons/print.png') no-repeat center center;}
+.icon-image{ background:url('icons/image.png') no-repeat center center;}
+
+
+/*商品中心新增图标  dfy 20171113*/
+.iconBtn-delete{ background:url('icons/iconBtn-delete.png') no-repeat center center;}  
+.iconBtn-putaway{ background:url('icons/iconBtn-putaway.png') no-repeat center center;} 
+.iconBtn-setUp{ background:url('icons/iconBtn-setUp.png') no-repeat center center;} 
+.iconBtn-shengxu{ background:url('icons/iconBtn-shengxu.png') no-repeat center center;} 
+.iconBtn-soldOut{ background:url('icons/iconBtn-soldOut.png') no-repeat center center;} 
+.iconBtn-modify{ background:url('icons/iconBtn-modify.png') no-repeat center center;} 

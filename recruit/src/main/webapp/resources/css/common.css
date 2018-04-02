@@ -1,0 +1,101 @@
+
+.tabItem{
+    padding: 15px 15px;
+}
+.tabItem li{
+    /*margin: 10px 0;*/
+}
+
+
+
+.itemCon{
+    margin-left:105px;
+}
+.itemCon p.prompting{
+    line-height: 26px;
+}
+.tabspage #basicInfo,
+#priceInfo,
+#detail,
+#pictureInfo{
+	padding-top:50px;
+}
+.infoList{
+	border-bottom: 1px solid #f5f5f5;
+}
+.infoList li{
+	width: 50%;
+    float: left;
+    line-height: 30px;
+    text-indent: 1em;
+}
+
+h3.itemTit{
+    line-height: 30px;
+    font-weight: bold;
+    text-indent: 1em;
+    margin-top: 5px;
+}
+#saleform table,
+#activityform table{
+    border: 1px solid #e5e5e5;
+    /*width: 90%;*/
+    margin-left: 1em;
+}
+#saleform table td,
+#activityform table td{
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    line-height: 30px;
+}
+
+
+
+.searchInfoInput{
+    padding: 5px 0 10px 0;
+}
+.searchInfoInput li{
+    width: 420px;
+    float: left;
+    margin-top: 5px;
+}
+.searchInfoInput li span.itemName{
+    width: 16%;
+    display: inline-block;
+    float: left;
+    text-align: right;
+    height: 30px;
+    line-height: 30px;
+}
+.searchInfoInput li div.itemCon{
+    width: 82%;
+    float: right;
+    height: 24px;
+    padding: 3px 0;
+}
+.priceList{
+	/* display:inline-block; */
+	width: 80%;
+	float: left;
+	text-align:  left;
+}
+.editBtn{
+	display: inline-block;
+	width: 20%;
+	line-height: 60px;
+	height: 100%;
+}
+/* 门店商品 头部 */
+#storeTabs .storeName{
+    line-height: 34px; 
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+#storeTabs .storeTips{
+    margin-right: 40px;
+    position: relative; 
+    top: 2px;
+}
+.clearfix:after { content: ' '; display: block; clear: both; visibility: hidden; line-height: 0; height: 0 }
+
+
