@@ -9,17 +9,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="<%=basePath%>resources/css/common/reset.css">
 <link rel="stylesheet" href="<%=basePath%>resources/easyui/themes/metro/easyui.css">
 <link rel="stylesheet" href="<%=basePath%>resources/css/main.css">
 <link rel="stylesheet" href="<%=basePath%>resources/css/icon.css">
 
 <title>基础数据列表</title>
 </head>
-<body  id="mytree" class="easyui-layout">
-	
-	    <div data-options="region:'west',title:'菜单',split:true" style="width:25%;">
+<body  class="easyui-layout">
+	<div id="departEdit">
+		<div data-options="region:'west',title:'菜单',split:true" style="width:25%;">
 		   <div class="easyui-panel" style="padding:5px;height:100%">
-			  <ul class="easyui-tree" id="departTree"></ul>
+			  <ul class="easyui-tree" id="resourceTree"></ul>
 		   </div>
 	    </div>
 	    
@@ -28,17 +29,19 @@
 		</div>
 		<div id="toolbar" style="display: none;">
 		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-setUp',plain:true" onclick="addip();">增加</a>
-		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-modify',plain:true" onclick="editip();">修改</a>
-		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-delete',plain:true" onclick="deleteip();">删除</a>
+		   <a href="javascript:void(0);" class="easyui-linkbutton"	data-options="iconCls:'iiconBtn-modify',plain:true" onclick="editip();">修改</a>
+		   <a href="javascript:void(0);" class="easyui-linkbutton"	data-options="iconCls:'iconBtn-delete',plain:true" onclick="deleteip();">删除</a>
 	    </div>
 			
-		<div id="mainDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:70%;height:60%;">
+		<div id="mainDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:50%;height:40%;">
 	        <iframe scrolling="auto" id='mainIframe'  frameborder="0"  src="" style="width:100%;height:98%;"></iframe>
 	    </div> 	
+	</div>
+    
 </body>    
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/user/user_main.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/resource/resource_main.js"></script>
 </html>
 

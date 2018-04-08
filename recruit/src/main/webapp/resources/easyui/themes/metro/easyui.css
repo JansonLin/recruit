@@ -63,6 +63,7 @@
   filter: alpha(opacity=60);
   margin: 0 0 0 2px;
   vertical-align: top;
+  float:right; /*dfy 20180403*/
 }
 .panel-tool a:hover {
   opacity: 1;

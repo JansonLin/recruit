@@ -1,19 +1,19 @@
 
 var dataGrid;
-var pid = 0; //菜单父ID
+var parentCode = "home"; //根组织编码
 var resourceName = "蜗牛人才网"
 
 $(function() {
 
 	//左边树形菜单数据加载
-	$('#resourceTree').tree({
-		url : "allTree",
+	$('#departTree').tree({
+		url : "tree",
 		onClick : function(node) {
 			$(this).tree('expand', node.target); //展开	
-			pid = node.id;
-			resourceName = resourceName + ">>" + node.text;
+			parentCode = node.id;
+			//resourceName = resourceName + ">>" + node.text;
 			dataGrid.datagrid('reload', {
-				pid : pid
+				parentCode : parentCode
 			}); //刷新主页表格数据
 		}
 	});
@@ -25,7 +25,7 @@ $(function() {
 		border : false,
 		url : 'page',
 		queryParams : {
-			pid : pid
+			parentCode : parentCode
 		},
 		method : 'get',
 		pagination : true,
@@ -45,20 +45,15 @@ $(function() {
 			align : 'center',
 			hidden : true
 		}, {
-			field : 'resourceName',
-			title : '菜单名称',
+			field : 'departName',
+			title : '部门名称',
 			align : 'center',
 			width : '20%'
 		}, {
-			field : 'resourceUrl',
-			title : '控制路径',
+			field : 'departCode',
+			title : '部门编码',
 			align : 'center',
 			width : '20%'
-		}, {
-			field : 'resourceLogo',
-			title : '样式',
-			align : 'center',
-			width : '15%'
 		}, {
 			field : 'status',
 			title : '状态',
@@ -100,7 +95,7 @@ $(function() {
 
 function addip() {
 	var title = resourceName + ">>>>>详细信息添加";
-	$('#mainIframe')[0].src = 'addip?pid=' + pid;
+	$('#mainIframe')[0].src = 'addip?parentCode=' + parentCode;
 	$('#mainDialog').dialog({
 		title : title,
 		resizable : true,
@@ -111,7 +106,7 @@ function addip() {
 
 function addFun() {
 	var data = $('#add-form').serialize();
-	console.log(data);
+	console.log("=========="+data);
 	if ($('#add-form').form('validate')) {
 		$.ajax({
 			type : 'post',
@@ -119,8 +114,8 @@ function addFun() {
 			dataType : "json",
 			data : data,
 			success : function(result) {
-				console.log(result);
-				if (result.type = "success") {
+				console.log(result+"=========="+result.type);
+				if (result.type == "success") {
 					parent.$('#mainDialog').dialog('close');
 					parent.$.messager.show({
 						title : '提示',
@@ -128,9 +123,17 @@ function addFun() {
 						timeout : 1000,
 						showType : 'slide'
 					});
+					var node=parent.$("#departTree").tree('find',parentCode); 
+					console.log("====="+node)
+		  	        parent.$("#departTree").tree('reload',node.target);   //刷新树
 					parent.dataGrid.datagrid('reload'); //刷新父主页表格数据
 				} else {
-					$.messager.alert("操作提示", result.content, "error");
+					parent.$.messager.show({
+						title : '错误',
+						msg : result.content,
+						timeout : 1000,
+						showType : 'slide'
+					});
 				}
 				;
 

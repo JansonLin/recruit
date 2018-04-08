@@ -60,8 +60,6 @@ public class DruidDataSourceConfig implements EnvironmentAware{
         } catch (SQLException e) {  
             e.printStackTrace();  
         } 
-        System.out.println(propertyResolver.getProperty("url")+"============="+datasource.getConnectCount());
-        System.out.println(datasource.getActiveCount()+"========");
         return datasource;  
     }  
   

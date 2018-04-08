@@ -5,15 +5,29 @@
 .tabItem li{
     /*margin: 10px 0;*/
 }
+.itemList{
+	padding:10px 0;
+}
+.itemList .item50{
+	width:50%;
+	float:left;
+}
+.itemName{
+	float:left;
+	line-height:24px;
 
-
+}
 
 .itemCon{
     margin-left:105px;
+    margin-bottom: 10px;
 }
 .itemCon p.prompting{
     line-height: 26px;
 }
+
+
+
 .tabspage #basicInfo,
 #priceInfo,
 #detail,
@@ -96,6 +110,6 @@ h3.itemTit{
     position: relative; 
     top: 2px;
 }
-.clearfix:after { content: ' '; display: block; clear: both; visibility: hidden; line-height: 0; height: 0 }
+.clearfix:after{ content: ' '; display: block; clear: both; visibility: hidden; line-height: 0; height: 0 }
 
 

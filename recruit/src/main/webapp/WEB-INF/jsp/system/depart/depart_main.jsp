@@ -32,13 +32,13 @@
 		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-delete',plain:true" onclick="deleteip();">删除</a>
 	    </div>
 			
-		<div id="mainDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:70%;height:60%;">
+		<div id="mainDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:60%;height:50%;">
 	        <iframe scrolling="auto" id='mainIframe'  frameborder="0"  src="" style="width:100%;height:98%;"></iframe>
 	    </div> 	
 </body>    
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/user/user_main.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/depart/depart_main.js"></script>
 </html>
 

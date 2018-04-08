@@ -234,3 +234,22 @@ sendLayer {
     margin-left: 15px;
     font-size: 14px;
 }
+
+/* mytree 去掉树前面的文件夹图标*/
+#mytree .tree-title{
+	margin-left:10px;
+	line-height:40px;
+}
+#mytree .tree-folder-open {
+    display:none;
+}
+#mytree .tree-folder {
+    display:none;
+}
+
+/*添加模块add-form*/
+.fixedBtnBanner{
+    position: fixed;
+    bottom: 10px;
+    right: 50px;
+}

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.chen.system.entity.SysDepart;
 import com.chen.system.entity.SysDepartExample;
@@ -21,6 +22,7 @@ import com.github.pagehelper.PageInfo;
  * @date: 2018年4月2日 下午4:53:09
  * @Copyright: 2018 www.chen.com Inc. All rights reserved.
  */
+@Service
 public class SysDepartServiceImpl implements SysDepartService {
 
 	@Autowired
@@ -36,7 +38,7 @@ public class SysDepartServiceImpl implements SysDepartService {
 	}
 
 	@Override
-	public List<SysDepart> childByParentId(String parentDepartCode) {
+	public List<SysDepart> childByParentCode(String parentDepartCode) {
 		SysDepartExample example = new SysDepartExample();
 		example.or().andParentDepartCodeEqualTo(parentDepartCode);
         List<SysDepart> list = sysDepartMapper.selectByExample(example);
@@ -82,6 +84,44 @@ public class SysDepartServiceImpl implements SysDepartService {
 
 		return flag;
 		
+	}
+
+	@Override
+	public List<SysDepart> findByLevel(Byte level) {
+		SysDepartExample example = new SysDepartExample();
+		example.or().andDepartLevelEqualTo(level);
+		List<SysDepart> list = sysDepartMapper.selectByExample(example);
+		return list;
+	}
+
+	@Override
+	public PageInfo<SysDepart> page(int pageNum, int pageSize, SysDepartExample sysDepartExample) {
+		PageHelper.startPage(pageNum, pageSize);
+        List<SysDepart> list = sysDepartMapper.selectByExample(sysDepartExample);
+		return new PageInfo<>(list);
+	}
+
+	@Override
+	public SysDepart findByCode(String departCode) {
+		SysDepartExample example = new SysDepartExample();
+		example.or().andDepartCodeEqualTo(departCode);
+		List<SysDepart> list = sysDepartMapper.selectByExample(example);
+		if(null==list||list.size()<1) {
+			return null;
+		}
+		return list.get(0);
+	}
+
+	@Override
+	public boolean existByCode(String departCode) {
+        boolean flag = false;
+		SysDepartExample example = new SysDepartExample();
+		example.or().andDepartCodeEqualTo(departCode);
+		long num = sysDepartMapper.countByExample(example);
+		if(num>0) {
+			flag=true;
+		}
+		return flag;
 	}
 
 }

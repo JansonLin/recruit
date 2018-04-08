@@ -53,8 +53,10 @@ public class SysResourceController {
 		}
 		Page<SysResource> resourcePage = new Page<>();
 		PageInfo<SysResource> resources = sysResourceService.page(page, rows, pid);
-		resourcePage.setRows(resources.getList());
-		resourcePage.setTotal(resources.getTotal());
+		if(null!=resources) {
+		   resourcePage.setRows(resources.getList());
+		   resourcePage.setTotal(resources.getTotal());
+		}
 		return resourcePage;
 	}
 	

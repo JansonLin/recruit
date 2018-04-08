@@ -120,7 +120,7 @@ function addFun() {
 			data : data,
 			success : function(result) {
 				console.log(result);
-				if (result.type = "success") {
+				if (result.type == "success") {
 					parent.$('#mainDialog').dialog('close');
 					parent.$.messager.show({
 						title : '提示',
