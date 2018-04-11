@@ -1,5 +1,7 @@
 package com.chen.system.service.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.chen.common.util.Md5Util;
 import com.chen.system.entity.SysUser;
 import com.chen.system.entity.SysUserDepart;
 import com.chen.system.entity.SysUserExample;
@@ -65,7 +68,7 @@ public class SysUserServiceImpl implements SysUserService {
 		}
 
 		if (null != sysUser.getId()) {
-			int upNum = sysUserMapper.updateByPrimaryKey(sysUser);
+			int upNum = sysUserMapper.updateByPrimaryKeySelective(sysUser);
 			if (upNum > 0) {
 				flag = true;
 			}
@@ -103,23 +106,35 @@ public class SysUserServiceImpl implements SysUserService {
 	@Transactional
 	@Override
 	public boolean saveUserByDepartId(long departId, SysUser sysUser) {
+		
 		boolean flag = false;
+		
+		try {
+			String password = Md5Util.EncoderByMd5(sysUser.getPassword());
+			sysUser.setPassword(password);
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
 		int saveNum = sysUserMapper.insert(sysUser);
 		if(saveNum>0) {
 			flag=true;
 		}
+		
 		SysUserDepart userDepart = new SysUserDepart();
 		userDepart.setSysDepartId(departId);
 		userDepart.setSysUserId(sysUser.getId());
-		userDepart.setCraeteTime(new Date());
-		userDepart.setCrator("chen");
-		userDepart.setUpdateTime(new Date());
-		userDepart.setUpdator("chen");
+		userDepart.setCraeteTime(sysUser.getCreateTime());
+		userDepart.setCrator(sysUser.getCreator());
+		userDepart.setUpdateTime(sysUser.getUpdateTime());
+		userDepart.setUpdator(sysUser.getUpdator());
 		int userDepartNum  = userDepartMapper.insert(userDepart);
 		if(userDepartNum<1) {
 			flag=false;
 		}
+		
 		return flag;
+		
 	}
 
 

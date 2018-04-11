@@ -1,24 +1,34 @@
+//日期控件中文化
+if ($.fn.calendar) {
+	$.fn.calendar.defaults.weeks = [ '日', '一', '二', '三', '四', '五', '六' ];
+	$.fn.calendar.defaults.months = [ '一月', '二月', '三月', '四月', '五月', '六月', '七月',
+			'八月', '九月', '十月', '十一月', '十二月' ];
+}
+if ($.fn.datebox) {
+	$.fn.datebox.defaults.currentText = '今天';
+	$.fn.datebox.defaults.closeText = '关闭';
+	$.fn.datebox.defaults.okText = '确定';
+}
 
 var dataGrid;
-var departId = 1; //根组织编码
+var departId = 1; // 根组织编码
 var resourceName = "蜗牛人才网"
 
 $(function() {
 
-	//左边树形菜单数据加载
+	// 左边树形菜单数据加载
 	$('#departTree').tree({
 		url : "/system/sysDepart/tree",
 		onClick : function(node) {
-			$(this).tree('expand', node.target); //展开	
-			departId = node.attributes.id;
-			console.log(node.attributes.id+"===========");
+			$(this).tree('expand', node.target); // 展开
+			departId = node.attributes.departId;
 			dataGrid.datagrid('reload', {
 				departId : departId
-			}); //刷新主页表格数据
+			}); // 刷新主页表格数据
 		}
 	});
 
-	//主页表格数据加载
+	// 主页表格数据加载
 	var mainGrid = '#main_grid';
 	dataGrid = $(mainGrid).datagrid({
 		fitColumns : false,
@@ -74,7 +84,7 @@ $(function() {
 				}
 			}
 		},
-		/*{field:'orderIndex',title:'排序',align:'center',width:'5%'},*/
+		/* {field:'orderIndex',title:'排序',align:'center',width:'5%'}, */
 		{
 			field : 'createTime',
 			title : '创建时间',
@@ -84,14 +94,13 @@ $(function() {
 				var unixTimestamp = new Date(value);
 				return unixTimestamp.toLocaleString();
 			}
-		},
-		{
+		}, {
 			field : 'creator',
 			title : '创建人',
 			align : 'center',
 			width : '20%'
 		}
-		/*{field:'remark',title:'备注',align:'center',width:'25%'}*/
+		/* {field:'remark',title:'备注',align:'center',width:'25%'} */
 		] ],
 		toolbar : '#toolbar',
 		onDblClickRow : function(rowIndex, rowData) {
@@ -117,7 +126,7 @@ function addip() {
 
 function addFun() {
 	var data = $('#add-form').serialize();
-	console.log("=========="+data);
+	console.log(data + "==========");
 	if ($('#add-form').form('validate')) {
 		$.ajax({
 			type : 'post',
@@ -125,7 +134,6 @@ function addFun() {
 			dataType : "json",
 			data : data,
 			success : function(result) {
-				console.log(result+"=========="+result.type);
 				if (result.type == "success") {
 					parent.$('#mainDialog').dialog('close');
 					parent.$.messager.show({
@@ -134,7 +142,7 @@ function addFun() {
 						timeout : 1000,
 						showType : 'slide'
 					});
-					parent.dataGrid.datagrid('reload'); //刷新父主页表格数据
+					parent.dataGrid.datagrid('reload'); // 刷新父主页表格数据
 				} else {
 					parent.$.messager.show({
 						title : '错误',
@@ -151,7 +159,7 @@ function addFun() {
 
 }
 
-//修改导航    
+// 修改导航
 function editip(rowData) {
 	var title = "详细信息修改";
 	var row;

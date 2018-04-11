@@ -429,21 +429,21 @@
   
   <!-- 条件查询用户信息  chencundeng 2018-4-4 -->
   <select id="list" parameterType="hashmap"  resultMap="BaseResultMap">
-      select user_name,password,phone,real_name,eamil,create_time,creator from sys_user u 
+      select u.user_name,u.password,u.phone,u.real_name,u.status,u.email,u.create_time,u.creator from sys_user u 
       inner join sys_user_depart ud on u.id=ud.sys_user_id where 1=1
        <if test="departId!=null">
-         and sys_depart_id=#{departId}
+         and ud.sys_depart_id=#{departId}
       </if>
       <if test="phone!=null">
-         and phone=#{phone}
+         and u.phone=#{phone}
       </if>
-      <if test="departId!=null">
-         and status=#{status}
+      <if test="status!=null">
+         and u.status=#{status}
       </if>
       <if test="userName!=null">
-         and user_name like  concat(concat('%',#{userName}),'%')
+         and u.user_name like  concat(concat('%',#{userName}),'%')
       </if>
-      order by create_time desc
+      order by u.create_time desc
   </select>  
   
 </mapper>

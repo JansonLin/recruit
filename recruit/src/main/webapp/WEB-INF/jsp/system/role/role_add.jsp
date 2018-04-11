@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="<%=basePath%>resources/easyui/themes/metro/easyui.css">
 <link rel="stylesheet" href="<%=basePath%>resources/css/icon.css">
 <link rel="stylesheet" href="<%=basePath%>resources/css/common.css">
-<link rel="stylesheet" href="<%=basePath%>resources/css/main.css?v=1">
 <title>组织列表</title>
 </head>
 <body class="easyui-layout">
@@ -22,20 +21,13 @@
 			<form id="add-form" method="post" action="">
 				<ul class="itemList clearfix">
 	                 <li class=" clearfix item50">
-	                    <span class="itemName">组织名称</span>
+	                    <span class="itemName">角色名称</span>
 	                    <div class="itemCon">
-	                        <input name="parentDepartCode" id="parentDepartCode" type="hidden" value="${parentCode}" >
-	                        <input class="easyui-textbox" name="departName"  data-options="width:150,required:true,missingMessage:'菜单名称不能为空'" type="text">
+	                        <input class="easyui-textbox" name="roleName"  data-options="width:150,required:true,missingMessage:'角色名称不能为空'" type="text">
 	                    </div>
 	                  </li>
-	                  <li class="clearfix item50">
-	                    <span class="itemName"><b>*</b>组织编码</span>
-	                    <div class="itemCon">
-	                        <input class="easyui-textbox" name="departCode"  data-options="width:150,required:true,missingMessage:'基菜单编码不能为空'" type="text">
-	                    </div>
-	                    </li>     
-	                   <li class="clearfix" >
-	                    <span class="itemName"><b>*</b>状态</span>
+	                   <li class="clearfix item50"" >
+	                    <span class="itemName">状态</span>
 	                    <div class="itemCon">
 	                        <select class="easyui-combobox" name="status" data-options="width:150,required:true,editable:false,panelHeight:'auto',missingMessage:'状态不能为空'" type="text">
 	                        <option value="1">启用</option>
@@ -43,7 +35,14 @@
 	                        </select>
 	                    </div>
 	                   </li>
-	                  <li class="clearfix">
+	                    <li class="clearfix item50" >
+	                    <span class="itemName">菜单权限</span>
+	                    <div class="itemCon">
+	                        <ul  class="easyui-tree" id="limitTree"></ul>
+	                    </div>
+	                   </li>
+	                   
+	                  <li class="clearfix item50">
 	                    <span class="itemName" >备注</span>
 	                    <div class="itemCon">
 	                       <input class="easyui-textbox" name="remark" data-options="width:200,height:60,multiline:true" type="text" style="margin-top:10px;">
@@ -62,6 +61,7 @@
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/depart/depart_add.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/role/role_main.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/role/role_add.js"></script>
 </html>
 

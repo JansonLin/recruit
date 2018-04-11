@@ -86,37 +86,25 @@ sendLayer {
 .sendLayer{
 	margin-top:10px;
 }
-.tree li{
-	/*height: 40px;*/
+/* .tree li{
+	height: 40px;
 	background: #f4f4f4;
-	/*border-bottom: 1px solid #fff;*/
-}
-.wu-side-tree .tree-node {/* padding:3px 0px; height: 100%;*/}
-.wu-side-tree a{
-	display:block;
-	line-height: 40px;
-	width: 100%;
-	font-size: 14px;
-	text-indent: 32px;
-	color: #000;
-}
+	border-bottom: 1px solid #fff;
+} */
+
 .multistageTree a{
 	display:block;
 	color: #000;
 }
-.wu-side-tree .tree-node-selected {
-	padding:2px 0;
-	background:#f4f4f4;
-	height: 36px;
-}
-.tree-node-selected .tree-title a{
+
+/* .tree-node-selected .tree-title a{
 	color:#ff7836;
 }
 .tree-title{	
-	/*width: 100%;*/	
+	width: 100%;	
 	padding: 0;	
 	height: 100%;
-} 
+}  */
 .panel-icon{
 	width: 18px;
 	height: 25px;
@@ -215,7 +203,7 @@ sendLayer {
     border-top: 1px solid #e4e4e4;
 }
 /*将折叠图标右置*/
-.tree-expanded {
+/* .tree-expanded {
 	background:url(../images/accordion_arrows.png) no-repeat -16px 0;
     margin-top: 12px;
 }
@@ -223,8 +211,8 @@ sendLayer {
 	background:url(../images/accordion_arrows.png) no-repeat -14px -16px;
     margin-top: 12px;
     
-}
-.tree-node {
+} */
+.multistageTree .tree-node {
 	height:40px;
 	border-bottom: 1px solid #fff;
 	position:relative;
@@ -236,7 +224,7 @@ sendLayer {
 }
 
 /* mytree 去掉树前面的文件夹图标*/
-#mytree .tree-title{
+/* #mytree .tree-title{
 	margin-left:10px;
 	line-height:40px;
 }
@@ -245,11 +233,6 @@ sendLayer {
 }
 #mytree .tree-folder {
     display:none;
-}
+} */
 
-/*添加模块add-form*/
-.fixedBtnBanner{
-    position: fixed;
-    bottom: 10px;
-    right: 50px;
-}
+

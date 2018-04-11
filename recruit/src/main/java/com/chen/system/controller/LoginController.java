@@ -1,6 +1,10 @@
 package com.chen.system.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -10,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @RequestMapping("/system/login")
 @Controller
-public class LoginController {
+public class LoginController extends BaseController{
     
 	@RequestMapping("/loginip")
 	public String loginip() {
@@ -18,7 +22,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/login")
-	public String login() {
+	public String login(HttpServletRequest request) {
 		return "/system/login/login_main";
 	}
 	

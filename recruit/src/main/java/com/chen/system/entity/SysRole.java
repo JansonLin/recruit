@@ -22,22 +22,27 @@ public class SysRole implements Serializable{
     /**
      * 备注
      */
-    private String ramrak;
+    private String remark;
 
     /**
      * 状态：0.无效 1.正常
      */
-    private Boolean status;
-
+    private Byte status;
+    
+    /**
+     * 权限集合
+     */
+    private String limits;
+    
     /**
      * 是否删除：0.否 1.是
      */
-    private Boolean deleted;
+    private Byte deleted;
 
     /**
      * 创建时间
      */
-    private Date craeteTime;
+    private Date createTime;
 
     /**
      * 创建人
@@ -70,39 +75,49 @@ public class SysRole implements Serializable{
         this.roleName = roleName == null ? null : roleName.trim();
     }
 
-    public String getRamrak() {
-        return ramrak;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setRamrak(String ramrak) {
-        this.ramrak = ramrak == null ? null : ramrak.trim();
+    public void setRemARk(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 
-    public Boolean getStatus() {
-        return status;
-    }
+    
+    public String getLimits() {
+		return limits;
+	}
 
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
+	public void setLimits(String limits) {
+		this.limits = limits;
+	}
 
-    public Boolean getDeleted() {
-        return deleted;
-    }
+	public Byte getStatus() {
+		return status;
+	}
 
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
+	public void setStatus(Byte status) {
+		this.status = status;
+	}
 
-    public Date getCraeteTime() {
-        return craeteTime;
-    }
+	public Byte getDeleted() {
+		return deleted;
+	}
 
-    public void setCraeteTime(Date craeteTime) {
-        this.craeteTime = craeteTime;
-    }
+	public void setDeleted(Byte deleted) {
+		this.deleted = deleted;
+	}
 
-    public String getCreator() {
+
+    public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getCreator() {
         return creator;
     }
 

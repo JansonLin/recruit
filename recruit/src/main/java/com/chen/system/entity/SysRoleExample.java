@@ -316,52 +316,52 @@ public class SysRoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Boolean value) {
+        public Criteria andStatusEqualTo(Byte value) {
             addCriterion("STATUS =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Boolean value) {
+        public Criteria andStatusNotEqualTo(Byte value) {
             addCriterion("STATUS <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Boolean value) {
+        public Criteria andStatusGreaterThan(Byte value) {
             addCriterion("STATUS >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
             addCriterion("STATUS >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Boolean value) {
+        public Criteria andStatusLessThan(Byte value) {
             addCriterion("STATUS <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Boolean value) {
+        public Criteria andStatusLessThanOrEqualTo(Byte value) {
             addCriterion("STATUS <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Boolean> values) {
+        public Criteria andStatusIn(List<Byte> values) {
             addCriterion("STATUS in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Boolean> values) {
+        public Criteria andStatusNotIn(List<Byte> values) {
             addCriterion("STATUS not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Boolean value1, Boolean value2) {
+        public Criteria andStatusBetween(Byte value1, Byte value2) {
             addCriterion("STATUS between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
             addCriterion("STATUS not between", value1, value2, "status");
             return (Criteria) this;
         }
@@ -376,113 +376,113 @@ public class SysRoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andDeletedEqualTo(Boolean value) {
+        public Criteria andDeletedEqualTo(Byte value) {
             addCriterion("DELETED =", value, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedNotEqualTo(Boolean value) {
+        public Criteria andDeletedNotEqualTo(Byte value) {
             addCriterion("DELETED <>", value, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedGreaterThan(Boolean value) {
+        public Criteria andDeletedGreaterThan(Byte value) {
             addCriterion("DELETED >", value, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedGreaterThanOrEqualTo(Boolean value) {
+        public Criteria andDeletedGreaterThanOrEqualTo(Byte value) {
             addCriterion("DELETED >=", value, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedLessThan(Boolean value) {
+        public Criteria andDeletedLessThan(Byte value) {
             addCriterion("DELETED <", value, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedLessThanOrEqualTo(Boolean value) {
+        public Criteria andDeletedLessThanOrEqualTo(Byte value) {
             addCriterion("DELETED <=", value, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedIn(List<Boolean> values) {
+        public Criteria andDeletedIn(List<Byte> values) {
             addCriterion("DELETED in", values, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedNotIn(List<Boolean> values) {
+        public Criteria andDeletedNotIn(List<Byte> values) {
             addCriterion("DELETED not in", values, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedBetween(Boolean value1, Boolean value2) {
+        public Criteria andDeletedBetween(Byte value1, Byte value2) {
             addCriterion("DELETED between", value1, value2, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andDeletedNotBetween(Boolean value1, Boolean value2) {
+        public Criteria andDeletedNotBetween(Byte value1, Byte value2) {
             addCriterion("DELETED not between", value1, value2, "deleted");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeIsNull() {
-            addCriterion("CRAETE_TIME is null");
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("CREATE_TIME is null");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeIsNotNull() {
-            addCriterion("CRAETE_TIME is not null");
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("CREATE_TIME is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeEqualTo(Date value) {
-            addCriterion("CRAETE_TIME =", value, "craeteTime");
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("CREATE_TIME =", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeNotEqualTo(Date value) {
-            addCriterion("CRAETE_TIME <>", value, "craeteTime");
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("CREATE_TIME <>", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeGreaterThan(Date value) {
-            addCriterion("CRAETE_TIME >", value, "craeteTime");
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("CREATE_TIME >", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("CRAETE_TIME >=", value, "craeteTime");
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME >=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeLessThan(Date value) {
-            addCriterion("CRAETE_TIME <", value, "craeteTime");
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("CREATE_TIME <", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeLessThanOrEqualTo(Date value) {
-            addCriterion("CRAETE_TIME <=", value, "craeteTime");
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("CREATE_TIME <=", value, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeIn(List<Date> values) {
-            addCriterion("CRAETE_TIME in", values, "craeteTime");
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("CREATE_TIME in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeNotIn(List<Date> values) {
-            addCriterion("CRAETE_TIME not in", values, "craeteTime");
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("CREATE_TIME not in", values, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeBetween(Date value1, Date value2) {
-            addCriterion("CRAETE_TIME between", value1, value2, "craeteTime");
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
-        public Criteria andCraeteTimeNotBetween(Date value1, Date value2) {
-            addCriterion("CRAETE_TIME not between", value1, value2, "craeteTime");
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("CREATE_TIME not between", value1, value2, "createTime");
             return (Criteria) this;
         }
 

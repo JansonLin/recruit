@@ -54,7 +54,6 @@
     </div> -->
 </body>
 <script type="text/javascript">
-	var orgId = '${user.orgId}';
 </script> 
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>
 <script src="<%=basePath%>resources/js/common/less.min.js"></script>

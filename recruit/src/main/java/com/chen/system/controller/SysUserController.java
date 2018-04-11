@@ -1,5 +1,6 @@
 package com.chen.system.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ import com.github.pagehelper.PageInfo;
  */
 @Controller
 @RequestMapping("/system/sysUser")
-public class SysUserController {
+public class SysUserController extends BaseController{
     
 	@Autowired
 	private SysUserService sysUserService;
@@ -78,10 +79,15 @@ public class SysUserController {
 	
 	@RequestMapping("/add")
 	@ResponseBody
-	public Message add(long departId,SysUser sysUser) {
+	public Message add(HttpServletRequest request,long departId,SysUser sysUser) {
 		if(null==sysUser) {
 			return Message.error("数据异常!");
 		}
+		SysUser user = admin(request);
+		sysUser.setCreateTime(new Date());
+		sysUser.setCreator(user.getUserName());
+		sysUser.setUpdateTime(new Date());
+		sysUser.setUpdator(user.getUserName());
 		boolean flag = sysUserService.saveUserByDepartId(departId, sysUser);
 		if(!flag) {
 			return Message.error("用户信息添加成功！");

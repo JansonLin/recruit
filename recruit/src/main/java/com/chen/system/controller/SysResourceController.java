@@ -111,6 +111,7 @@ public class SysResourceController {
 		return treeList;
 	}
 	
+	
 	@RequestMapping("/allTree")
 	@ResponseBody
 	public List<TreeVo> allTree(Integer id){

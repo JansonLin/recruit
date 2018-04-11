@@ -15,7 +15,7 @@
 
 <title>基础数据列表</title>
 </head>
-<body  id="mytree" class="easyui-layout">
+<body  class="easyui-layout">
 	
 	    <div data-options="region:'west',title:'菜单',split:true" style="width:25%;">
 		   <div class="easyui-panel" style="padding:5px;height:100%">

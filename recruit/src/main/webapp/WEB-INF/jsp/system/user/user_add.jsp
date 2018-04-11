@@ -14,9 +14,9 @@
 <link rel="stylesheet" href="<%=basePath%>resources/css/icon.css">
 <link rel="stylesheet" href="<%=basePath%>resources/css/common.css">
 <link rel="stylesheet" href="<%=basePath%>resources/css/main.css?v=1">
-<title>基础数据列表</title>
+<title>用户添加</title>
 </head>
-<body class="easyui-layout departAdd">
+<body class="easyui-layout ">
 	<div data-options="region:'center',border:false,split:true" style="width:100%;padding:0 15px;">
 		<div class="formList">
 			<form id="add-form" method="post" action="">
@@ -55,7 +55,7 @@
 	                  <li class="clearfix item50">
 	                    <span class="itemName">出生日期</span>
 	                    <div class="itemCon">
-	                        <input class="easyui-textbox" name="birthday"  data-options="width:150" type="text">
+	                        <input class="easyui-datebox" name="birthday" data-options="width:150">
 	                    </div>
 	                    </li>      
 	                   <li class="clearfix item50" >
@@ -94,7 +94,7 @@
 </body>  
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.min.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/depart/depart_main.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.ext.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/user/user_main.js"></script>
 </html>
 

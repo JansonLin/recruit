@@ -13,23 +13,17 @@
 <link rel="stylesheet" href="<%=basePath%>resources/css/main.css">
 <link rel="stylesheet" href="<%=basePath%>resources/css/icon.css">
 
-<title>用户列表</title>
+<title>角色列表</title>
 </head>
 <body  class="easyui-layout">
 	
-	    <div data-options="region:'west',title:'菜单',split:true" style="width:25%;">
-		   <div class="easyui-panel" style="padding:5px;height:100%">
-			  <ul class="easyui-tree" id="departTree"></ul>
-		   </div>
-	    </div>
-	    
 	    <div data-options="region:'center',title:'主页'" split="true">
 			<table id="main_grid" class="easyui-datagrid" style="width:100%;height:97%"></table>
 		</div>
 		<div id="toolbar" style="display: none;">
 		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-setUp',plain:true" onclick="addip();">增加</a>
 		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-modify',plain:true" onclick="editip();">修改</a>
-		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-delete',plain:true" onclick="deleteip();">删除</a>
+		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-delete',plain:true" onclick="deleteFun();">删除</a>
 	    </div>
 			
 		<div id="mainDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:70%;height:60%;">
@@ -39,6 +33,6 @@
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/locale/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/user/user_main.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/role/role_main.js"></script>
 </html>
 

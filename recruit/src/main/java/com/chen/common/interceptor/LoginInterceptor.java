@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chen.system.entity.SysUser;
+
 /**
  * @ClassName:  MyInterceptor   
  * @Description:TODO 系统拦截器 
@@ -24,9 +26,14 @@ public class LoginInterceptor implements HandlerInterceptor{
 	}
 
 	@Override
-	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object object, ModelAndView view)
 			throws Exception {
-		System.out.println("==========================");
+		System.out.println("执行到这里----");
+		SysUser user = new SysUser();
+		user.setId(1L);
+		user.setUserName("chenchen");
+		user.setRealName("陈存登");
+		request.getSession().setAttribute("user", user);
 	}
 
 	@Override

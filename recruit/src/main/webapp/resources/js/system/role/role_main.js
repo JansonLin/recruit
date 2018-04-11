@@ -1,40 +1,24 @@
 
 var dataGrid;
-var pid = 0; //菜单父ID
 var resourceName = "蜗牛人才网"
 
 $(function() {
 
-	//左边树形菜单数据加载
-	$('#resourceTree').tree({
-		url : "allTree",
-		onClick : function(node) {
-			$(this).tree('expand', node.target); //展开	
-			pid = node.id;
-			resourceName = resourceName + ">>" + node.text;
-			dataGrid.datagrid('reload', {
-				pid : pid
-			}); //刷新主页表格数据
-		}
-	});
 
-	//主页表格数据加载
+	// 主页表格数据加载
 	var mainGrid = '#main_grid';
 	dataGrid = $(mainGrid).datagrid({
 		fitColumns : false,
 		border : false,
 		url : 'page',
-		queryParams : {
-			pid : pid
-		},
 		method : 'get',
 		pagination : true,
 		striped : true,
 		selectOnCheck : true,
 		rownumbers : true,
 		idField : 'id',
-		pageSize : 15,
-		pageList : [ 15, 30, 45, 60, 75 ],
+		pageSize : 20,
+		pageList : [ 20, 30, 45, 60, 75 ],
 		loadMsg : "数据加载中....",
 		columns : [ [ {
 			field : 'ck',
@@ -45,20 +29,15 @@ $(function() {
 			align : 'center',
 			hidden : true
 		}, {
-			field : 'resourceName',
-			title : '菜单名称',
+			field : 'roleName',
+			title : '角色名称',
 			align : 'center',
 			width : '20%'
 		}, {
-			field : 'resourceUrl',
-			title : '控制路径',
+			field : 'ramrak',
+			title : '备注',
 			align : 'center',
-			width : '20%'
-		}, {
-			field : 'resourceLogo',
-			title : '样式',
-			align : 'center',
-			width : '15%'
+			width : '30%'
 		}, {
 			field : 'status',
 			title : '状态',
@@ -74,7 +53,6 @@ $(function() {
 				}
 			}
 		},
-		/*{field:'orderIndex',title:'排序',align:'center',width:'5%'},*/
 		{
 			field : 'createTime',
 			title : '创建时间',
@@ -84,8 +62,12 @@ $(function() {
 				var unixTimestamp = new Date(value);
 				return unixTimestamp.toLocaleString();
 			}
-		},
-		/*{field:'remark',title:'备注',align:'center',width:'25%'}*/
+		}, {
+			field : 'creator',
+			title : '创建人',
+			align : 'center',
+			width : '20%'
+		}
 		] ],
 		toolbar : '#toolbar',
 		onDblClickRow : function(rowIndex, rowData) {
@@ -100,7 +82,7 @@ $(function() {
 
 function addip() {
 	var title = resourceName + ">>>>>详细信息添加";
-	$('#mainIframe')[0].src = 'addip?pid=' + pid;
+	$('#mainIframe')[0].src = 'addip';
 	$('#mainDialog').dialog({
 		title : title,
 		resizable : true,
@@ -109,42 +91,10 @@ function addip() {
 	$('#mainDialog').dialog('open')
 }
 
-function addFun() {
-	var data = $('#add-form').serialize();
-    var treeId = pid;
-    console.log(pid+"=============");
-	if ($('#add-form').form('validate')) {
-		$.ajax({
-			type : 'post',
-			url : 'add',
-			dataType : "json",
-			data : data,
-			success : function(result) {
-				if (result.type == "success") {
-					parent.$('#mainDialog').dialog('close');
-					parent.$.messager.show({
-						title : '提示',
-						msg : result.content,
-						timeout : 1000,
-						showType : 'slide'
-					});
-					var node=parent.$("#resourceTree").tree('find',treeId); 
-		  	        parent.$("#resourceTree").tree('reload',node.target);   //刷新树
-					parent.dataGrid.datagrid('reload'); //刷新父主页表格数据
-				} else {
-					$.messager.alert("操作提示", result.content, "error");
-				}
-				;
 
-			}
-		});
-	}
-
-}
-
-//修改导航    
+// 修改导航
 function editip(rowData) {
-	var title = "详细信息修改";
+	var title = resourceName + "详细信息修改";
 	var row;
 	if (null != rowData) {
 		row = rowData;
@@ -152,7 +102,7 @@ function editip(rowData) {
 		row = dataGrid.datagrid('getSelections')[0];
 	}
 	if (row) {
-		$('#mainIframe')[0].src = 'detailEditip?detailId=' + row.id;
+		$('#mainIframe')[0].src = 'editip?id=' + row.id;
 		$('#mainDialog').dialog({
 			title : title,
 			resizable : true,
@@ -162,4 +112,44 @@ function editip(rowData) {
 	} else {
 		$.messager.alert("操作提示", "请选择修改的信息!", "info");
 	}
+}
+
+//删除信息
+function deleteFun(){
+	var row  = dataGrid.datagrid('getSelections');
+	if(row.length<1){
+		$.messager.alert("操作提示", "请选择删除的信息!","info");	
+		return;
+	}
+	var ids=[]; 
+	$.each(row,function(i){
+	   var id=row[i].id;     
+       ids.push(id);
+	});
+	console.log(ids);
+	$.messager.confirm('询问', '确认删除当前选择记录？', function(b) {
+		if(b){
+			$.ajax({
+				url: "delete?ids="+ids,
+				type: "POST",
+				dataType: "json",
+				success: function(result) {
+			    	console.log(result);
+			     	if(result.type="success"){
+			        	parent.$.messager.show({
+			    			 title:'提示',
+			    			 msg:result.content,
+			    			 timeout:1000,
+			    			 showType:'slide'
+			    		   });
+			        	dataGrid.datagrid('reload');  //刷新父主页表格数据
+				      /*  var node=$("#moudleTree").tree('find',pid); 
+			        	$("#moudleTree").tree('reload',node.target); */
+			    	}else{
+			        	$.messager.alert("操作提示", result.content,"error");
+			    	}; 
+				}
+			});
+		}
+	});
 }
