@@ -30,9 +30,10 @@
 		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-setUp',plain:true" onclick="addip();">增加</a>
 		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-modify',plain:true" onclick="editip();">修改</a>
 		   <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-delete',plain:true" onclick="deleteip();">删除</a>
+		  <!--  <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-setUp',plain:true" onclick="empowerFun();">角色授权</a> -->
 	    </div>
 			
-		<div id="mainDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:60%;height:50%;">
+		<div id="mainDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:80%;height:70%;">
 	        <iframe scrolling="auto" id='mainIframe'  frameborder="0"  src="" style="width:100%;height:98%;"></iframe>
 	    </div> 	
 </body>    

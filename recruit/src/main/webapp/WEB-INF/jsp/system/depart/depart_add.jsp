@@ -18,7 +18,9 @@
 </head>
 <body class="easyui-layout">
 	<div data-options="region:'center',border:false,split:true" style="width:100%;padding:0 15px;">
-		<div class="formList">
+	<div  class="easyui-tabs" height="80%">
+        <div title="基本信息" style="padding:20px;display:none;">
+    		<div class="formList">
 			<form id="add-form" method="post" action="">
 				<ul class="itemList clearfix">
 	                 <li class=" clearfix item50">
@@ -29,13 +31,13 @@
 	                    </div>
 	                  </li>
 	                  <li class="clearfix item50">
-	                    <span class="itemName"><b>*</b>组织编码</span>
+	                    <span class="itemName">组织编码</span>
 	                    <div class="itemCon">
 	                        <input class="easyui-textbox" name="departCode"  data-options="width:150,required:true,missingMessage:'基菜单编码不能为空'" type="text">
 	                    </div>
 	                    </li>     
 	                   <li class="clearfix" >
-	                    <span class="itemName"><b>*</b>状态</span>
+	                    <span class="itemName">状态</span>
 	                    <div class="itemCon">
 	                        <select class="easyui-combobox" name="status" data-options="width:150,required:true,editable:false,panelHeight:'auto',missingMessage:'状态不能为空'" type="text">
 	                        <option value="1">启用</option>
@@ -52,11 +54,28 @@
 	                </ul>               		
 			</form>
 		</div>
+        </div>
+        <div title="角色信息" >
+         <div data-options="region:'center',title:'主页'" split="true">
+           <table id="main_grid" class="easyui-datagrid" ></table>
+         </div>
+         <div id="toolbar" style="display: none;">
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-setUp',
+                       plain:true" onclick="empowerip();">角色授权</a>
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-delete',
+                 plain:true" onclick="delpowerFun();">取消授权</a>
+         </div>
+        </div>
+    </div>
+			
 		
 		<div class="fixedBtnBanner">
             <a href="#" class="easyui-linkbutton" data-options="" onclick="addFun()">保&nbsp存</a>
             <a href="#" class="easyui-linkbutton" data-options="" onclick="cancelFun()">取&nbsp消</a>
         </div>
+      <div id="addDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:80%;height:100%;">
+	      <iframe scrolling="auto" id='mainIframe'  frameborder="0"  src="" style="width:100%;height:100%;"></iframe>
+	  </div> 
 	</div>
 </body>  
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>

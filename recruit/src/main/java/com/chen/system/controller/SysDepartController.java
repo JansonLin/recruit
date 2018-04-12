@@ -20,6 +20,7 @@ import com.chen.common.util.Page;
 import com.chen.common.vo.TreeVo;
 import com.chen.system.entity.SysDepart;
 import com.chen.system.entity.SysDepartExample;
+import com.chen.system.entity.SysRole;
 import com.chen.system.service.SysDepartService;
 import com.github.pagehelper.PageInfo;
 
@@ -64,6 +65,12 @@ public class SysDepartController {
 	
 	}
     
+	@RequestMapping("/rolePage")
+	@ResponseBody
+	public Page<SysRole> rolePage(HttpServletRequest request, Integer page, Integer rows){
+		return null;
+	}
+	
 	@RequestMapping("/tree")
 	@ResponseBody
 	public List<TreeVo> tree(String id){
@@ -158,6 +165,11 @@ public class SysDepartController {
 		}
 		
 		return Message.success("组织数据添加成功！");
+	}
+	
+	@RequestMapping("/empowerip")
+	public String empowerip() {
+		return "system/depart/role_empower";
 	}
 	
 	

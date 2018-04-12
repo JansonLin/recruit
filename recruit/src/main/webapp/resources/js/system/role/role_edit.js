@@ -69,3 +69,6 @@ function editFun() {
 	}
 
 }
+function cancelFun(){
+	 parent.$('#mainDialog').dialog('close');
+}

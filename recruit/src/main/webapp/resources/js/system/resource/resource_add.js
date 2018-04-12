@@ -36,4 +36,7 @@ function addFun() {
 	}
 
 }
+function cancelFun(){
+	 parent.$('#mainDialog').dialog('close');
+}
 
