@@ -18,6 +18,8 @@
 </head>
 <body class="easyui-layout ">
 	<div data-options="region:'center',border:false,split:true" style="width:100%;padding:0 15px;">
+		<div  class="easyui-tabs" height="80%">
+        <div title="基本信息" style="padding:20px;display:none;">
 		<div class="formList">
 			<form id="add-form" method="post" action="">
 				<ul class="itemList clearfix">
@@ -85,16 +87,33 @@
 	                </ul>               		
 			</form>
 		</div>
+		</div>
 		
+		<div title="角色信息" >
+         <div data-options="region:'center',title:'主页'" split="true">
+           <table id="main_grid" class="easyui-datagrid" ></table>
+         </div>
+         <div id="toolbar" style="display: none;">
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-setUp',
+                       plain:true" onclick="empowerip();">角色授权</a>
+            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'iconBtn-delete',
+                 plain:true" onclick="delpowerFun();">取消授权</a>
+         </div>
+        </div>
+		
+		</div>
 		<div class="fixedBtnBanner">
             <a href="#" class="easyui-linkbutton" data-options="" onclick="addFun()">保&nbsp存</a>
             <a href="#" class="easyui-linkbutton" data-options="" onclick="cancelFun()">取&nbsp消</a>
         </div>
+         <div id="addDialog" class="easyui-dialog" closed="true" buttons="#dlg-buttons"  style="width:80%;height:100%;">
+	      <iframe scrolling="auto" id='mainIframe'  frameborder="0"  src="" style="width:100%;height:100%;"></iframe>
+	  </div> 
 	</div>
 </body>  
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/easyui/jquery.easyui.ext.js"></script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/user/user_main.js"></script>
+<script type="text/javascript" charset="utf-8" src="<%=basePath%>resources/js/system/user/user_add.js"></script>
 </html>
 

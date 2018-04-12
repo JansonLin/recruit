@@ -134,12 +134,12 @@ public class SysDepartController {
 	
 	@RequestMapping("/add")
 	@ResponseBody
-	public Message add(SysDepart depart) throws SQLException {
+	public Message add(Long[] roleIds,SysDepart depart) throws SQLException {
 		
 		if(null==depart) {
 			return Message.error("数据异常，请重新添加！");
 		}
-		
+		System.out.println(roleIds);
 		SysDepart parentDepart = sysDepartService.findByCode(depart.getParentDepartCode());
         if(null==parentDepart) {
         	return Message.error("数据异常，请重新添加！");
@@ -158,18 +158,13 @@ public class SysDepartController {
 		depart.setUpdator("chen");
 		depart.setDepartLevel((byte)(parentDepart.getDepartLevel()+1));
 		
-		boolean saveFlag = sysDepartService.saveOrUpdate(depart);
+		boolean saveFlag = sysDepartService.saveInfoAndRole(roleIds, depart);
 		
 		if(!saveFlag) {
 			return Message.error("组织数据添加失败！");
 		}
 		
 		return Message.success("组织数据添加成功！");
-	}
-	
-	@RequestMapping("/empowerip")
-	public String empowerip() {
-		return "system/depart/role_empower";
 	}
 	
 	

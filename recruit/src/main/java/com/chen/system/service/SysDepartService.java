@@ -37,7 +37,15 @@ public interface SysDepartService {
     
 	List<SysDepart> childByParentCode(String parentDepartCode);
 	
-	boolean saveOrUpdate(SysDepart sysDepart) throws SQLException;
+	boolean saveOrUpdate(SysDepart sysDepart);
+	
+	/**
+	 * 保存组织及其角色信息
+	 * @param rolesIds
+	 * @param sysDepart
+	 * @return
+	 */
+	boolean saveInfoAndRole(Long[] roleIds,SysDepart sysDepart);
 	
 	boolean deletes(List<Long> id) throws SQLException;
 	

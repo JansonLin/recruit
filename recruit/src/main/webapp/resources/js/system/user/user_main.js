@@ -1,14 +1,3 @@
-//日期控件中文化
-if ($.fn.calendar) {
-	$.fn.calendar.defaults.weeks = [ '日', '一', '二', '三', '四', '五', '六' ];
-	$.fn.calendar.defaults.months = [ '一月', '二月', '三月', '四月', '五月', '六月', '七月',
-			'八月', '九月', '十月', '十一月', '十二月' ];
-}
-if ($.fn.datebox) {
-	$.fn.datebox.defaults.currentText = '今天';
-	$.fn.datebox.defaults.closeText = '关闭';
-	$.fn.datebox.defaults.okText = '确定';
-}
 
 var dataGrid;
 var departId = 1; // 根组织编码
@@ -124,40 +113,6 @@ function addip() {
 	$('#mainDialog').dialog('open')
 }
 
-function addFun() {
-	var data = $('#add-form').serialize();
-	console.log(data + "==========");
-	if ($('#add-form').form('validate')) {
-		$.ajax({
-			type : 'post',
-			url : 'add',
-			dataType : "json",
-			data : data,
-			success : function(result) {
-				if (result.type == "success") {
-					parent.$('#mainDialog').dialog('close');
-					parent.$.messager.show({
-						title : '提示',
-						msg : result.content,
-						timeout : 1000,
-						showType : 'slide'
-					});
-					parent.dataGrid.datagrid('reload'); // 刷新父主页表格数据
-				} else {
-					parent.$.messager.show({
-						title : '错误',
-						msg : result.content,
-						timeout : 1000,
-						showType : 'slide'
-					});
-				}
-				;
-
-			}
-		});
-	}
-
-}
 
 // 修改导航
 function editip(rowData) {

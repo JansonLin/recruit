@@ -1,16 +1,20 @@
 package com.chen.system.service.impl;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.chen.system.entity.SysDepart;
 import com.chen.system.entity.SysDepartExample;
 import com.chen.system.entity.SysResource;
 import com.chen.system.entity.SysResourceExample;
+import com.chen.system.entity.SysRoleDepart;
 import com.chen.system.mapper.SysDepartMapper;
+import com.chen.system.mapper.SysRoleDepartMapper;
 import com.chen.system.service.SysDepartService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -27,7 +31,10 @@ public class SysDepartServiceImpl implements SysDepartService {
 
 	@Autowired
 	private SysDepartMapper sysDepartMapper;
-
+    
+	@Autowired
+	private SysRoleDepartMapper  sysRoleDepartMapper;
+	
 	@Override
 	public PageInfo<SysDepart> page(int pageNum, int pageSize, String parentDepartCode) {
 		PageHelper.startPage(pageNum, pageSize);
@@ -46,7 +53,7 @@ public class SysDepartServiceImpl implements SysDepartService {
 	}
 
 	@Override
-	public boolean saveOrUpdate(SysDepart sysDepart) throws SQLException {
+	public boolean saveOrUpdate(SysDepart sysDepart)  {
 		
 		boolean flag = false;
 
@@ -121,6 +128,39 @@ public class SysDepartServiceImpl implements SysDepartService {
 		if(num>0) {
 			flag=true;
 		}
+		return flag;
+	}
+    
+	@Transactional
+	@Override
+	public boolean saveInfoAndRole(Long[] roleIds, SysDepart sysDepart) {
+		
+		boolean flag = false;
+
+		if (null == sysDepart) {
+			return flag;
+		}
+
+		int saveNum = sysDepartMapper.insert(sysDepart);
+		if (saveNum > 0) {
+			flag = true;
+		}
+        
+		if(null!=roleIds) {
+			for(int i=0;i<roleIds.length;i++) {
+				SysRoleDepart sysRoleDepart = new SysRoleDepart();
+				sysRoleDepart.setCreateTime(new Date());
+				sysRoleDepart.setCreator(sysDepart.getCreator());
+				sysRoleDepart.setSysDepartId(sysDepart.getId());
+				sysRoleDepart.setSysRoleId(roleIds[i]);
+				sysRoleDepart.setDeleted(false);
+				int inNum = sysRoleDepartMapper.insert(sysRoleDepart);
+				if(inNum<1) {
+					flag=false;
+				}
+			}
+		}
+		
 		return flag;
 	}
 

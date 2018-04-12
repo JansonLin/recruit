@@ -1,10 +1,20 @@
-var parentCode = "home"; // 根组织编码
-var dataGrid;
+//日期控件中文化
+if ($.fn.calendar) {
+	$.fn.calendar.defaults.weeks = [ '日', '一', '二', '三', '四', '五', '六' ];
+	$.fn.calendar.defaults.months = [ '一月', '二月', '三月', '四月', '五月', '六月', '七月',
+			'八月', '九月', '十月', '十一月', '十二月' ];
+}
+if ($.fn.datebox) {
+	$.fn.datebox.defaults.currentText = '今天';
+	$.fn.datebox.defaults.closeText = '关闭';
+	$.fn.datebox.defaults.okText = '确定';
+}
+
+var departId = 1; // 根组织编码
+
 $(function() {
-
-	parentCode = $("#parentDepartCode").val();
-
-	// 主页表格数据加载
+    departId = $("#departId").val();
+ // 主页表格数据加载
 	var mainGrid = '#main_grid';
 	dataGrid = $(mainGrid).datagrid({
 		fitColumns : false,
@@ -61,53 +71,43 @@ $(function() {
 			$.messager.progress('close');
 		}
 	});
+});
 
-})
 
 function addFun() {
-	var rows = dataGrid.datagrid('getRows');
-	var roleIds=new Array()
-	if(null!=rows){
-		for(var i=0;i<rows.length;i++){
-			roleIds[i] = rows[i].id;
-		}
-		
-	}
 	var data = $('#add-form').serialize();
-	data = data +"&roleIds="+roleIds;
-	console.log(data);
+	console.log(data + "==========");
 	if ($('#add-form').form('validate')) {
-		$
-				.ajax({
-					type : 'post',
-					url : 'add',
-					dataType : "json",
-					data : data,
-					success : function(result) {
-						if (result.type == "success") {
-							parent.$('#mainDialog').dialog('close');
-							parent.$.messager.show({
-								title : '提示',
-								msg : result.content,
-								timeout : 1000,
-								showType : 'slide'
-							});
-							var node = parent.$("#departTree").tree('find',
-									parentCode);
-							parent.$("#departTree").tree('reload', node.target); // 刷新树
-							parent.dataGrid.datagrid('reload'); // 刷新父主页表格数据
-						} else {
-							parent.$.messager.show({
-								title : '错误',
-								msg : result.content,
-								timeout : 1000,
-								showType : 'slide'
-							});
-						}
-						;
+		$.ajax({
+			type : 'post',
+			url : 'add',
+			dataType : "json",
+			data : data,
+			success : function(result) {
+				if (result.type == "success") {
+					parent.$('#mainDialog').dialog('close');
+					parent.$.messager.show({
+						title : '提示',
+						msg : result.content,
+						timeout : 1000,
+						showType : 'slide'
+					});
+					var node = parent.$("#departTree").tree('find',
+							departId);
+					parent.$("#departTree").tree('reload', node.target); // 刷新树
+					parent.dataGrid.datagrid('reload'); // 刷新父主页表格数据
+				} else {
+					parent.$.messager.show({
+						title : '错误',
+						msg : result.content,
+						timeout : 1000,
+						showType : 'slide'
+					});
+				}
+				;
 
-					}
-				});
+			}
+		});
 	}
 
 }
@@ -146,8 +146,4 @@ function addLineFun(rows) {
 			status : rows[i].status
 		});
 	}
-}
-
-function cancelFun() {
-	parent.$('#mainDialog').dialog('close');
 }
