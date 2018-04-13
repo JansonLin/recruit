@@ -28,4 +28,11 @@ public interface SysRoleService {
 	
 	boolean deletes(List<Long> id);
 	
+	/**
+	 * 获取用户角色列表
+	 * @param userId
+	 * @return
+	 */
+	List<SysRole> getUserRole(long userId); 
+	
 }

@@ -10,16 +10,15 @@ if ($.fn.datebox) {
 	$.fn.datebox.defaults.okText = '确定';
 }
 
-var departId = 1; // 根组织编码
-
+var id="";
 $(function() {
-    departId = $("#departId").val();
- // 主页表格数据加载
+    id = $("#id").val();
+    // 主页表格数据加载
 	var mainGrid = '#main_grid';
 	dataGrid = $(mainGrid).datagrid({
 		fitColumns : false,
 		border : false,
-		url : '',
+		url : 'rolePage?userId='+id,
 		method : 'get',
 		//pagination : true,
 		striped : true,
@@ -74,7 +73,7 @@ $(function() {
 });
 
 
-function addFun() {
+function editFun() {
 	var rows = dataGrid.datagrid('getRows');
 	var roleIds=new Array()
 	if(null!=rows){
@@ -83,13 +82,13 @@ function addFun() {
 		}
 		
 	}
-	var data = $('#add-form').serialize();
+	var data = $('#edit-form').serialize();
 	data = data +"&roleIds="+roleIds;
 	console.log(data + "==========");
 	if ($('#add-form').form('validate')) {
 		$.ajax({
 			type : 'post',
-			url : 'add',
+			url : 'edit',
 			dataType : "json",
 			data : data,
 			success : function(result) {
@@ -118,40 +117,70 @@ function addFun() {
 
 }
 
-function empowerip() {
+function userRoleEditip() {
+	var rows = dataGrid.datagrid('getRows');
+	var roleIds=new Array()
+	if(null!=rows){
+		for(var i=0;i<rows.length;i++){
+			roleIds[i] = rows[i].id;
+		}
+		
+	}
+	console.log(roleIds+"========");
 	var title = "角色授权";
-	$('#mainIframe')[0].src = '/system/sysCommon/empowerip';
-	$('#addDialog').dialog({
+	$('#mainIframe')[0].src = 'userRoleEditip?roleIds='+roleIds+'&userId='+id;
+	$('#editDialog').dialog({
 		title : title,
 		resizable : true,
 		modal : true,
 	});
-	$('#addDialog').dialog('open')
+	$('#editDialog').dialog('open')
 }
 
 // 取消角色授权
-function delpowerFun() {
+function userRoleDeleteFun() {
+	 var data="";
+	 data ="userId="+id;
+	 var rows = dataGrid.datagrid('getChecked');
+	 if(null==rows){
+		 return;
+	 }
+	 var roleIds=new Array()
+		if(null!=rows){
+			for(var i=0;i<rows.length;i++){
+				roleIds[i] = rows[i].id;
+			}
+	 }
+	 data = data+"&roleIds="+roleIds;
+	 console.log(data);
 	var row = dataGrid.datagrid('getSelected');
-	if (null == row) {
-		return;
-	}
+	$.ajax({
+		type : 'post',
+		url : 'userRoleDelete',
+		dataType : "json",
+		data : data,
+		success : function(result) {
+			if (result.type == "success") {
+				parent.$('#editDialog').dialog('close');
+				/*parent.$.messager.show({
+					title : '提示',
+					msg : result.content,
+					timeout : 1000,
+					showType : 'slide'
+				});*/
+				parent.dataGrid.datagrid('reload'); // 刷新父主页表格数据
+			} else {
+				parent.$.messager.show({
+					title : '错误',
+					msg : result.content,
+					timeout : 1000,
+					showType : 'slide'
+				});
+			}
+			;
 
-	var index = dataGrid.datagrid('getRowIndex', row);// 获取某行的行号
-	console.log("===========" + index);
-	dataGrid.datagrid('deleteRow', index); // 通过行号移除该行
-
-}
-
-// 会写选择的角色信息
-function addLineFun(rows) {
-	for (var i = 0; i < rows.length; i++) {
-		dataGrid.datagrid('appendRow', {
-			id : rows[i].id,
-			roleName : rows[i].roleName,
-			ramrak : rows[i].remark,
-			status : rows[i].status
-		});
-	}
+		}
+	});
 }
 
 function cancelFun(){

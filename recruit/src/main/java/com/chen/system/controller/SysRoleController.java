@@ -67,7 +67,43 @@ public class SysRoleController extends BaseController {
 		return rolePages;
 
 	}
-
+    
+	/**
+	 * 获取用户未拥有的角色信息
+	 * @param roleIds
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
+	@RequestMapping("/userRoleEditPage")
+	@ResponseBody
+	public Page<SysRole> userRoleEditPage(Long[] roleIds, Integer page, Integer rows) {
+		
+		Page<SysRole> rolePages = new Page<>();
+		PageInfo<SysRole> roles=null;
+		List<Long> idList = new ArrayList<>();
+		if(null!=roleIds&&roleIds.length>0) {
+			for(int i=0;i<roleIds.length;i++) {
+				idList.add(roleIds[i]);
+			}
+			SysRoleExample example = new SysRoleExample();
+			example.or().andIdNotIn(idList);
+			roles = sysRoleService.page(page, rows, example);
+			
+		}else {
+			roles = sysRoleService.page(page, rows, null);
+		}
+		
+		if (null != roles) {
+			rolePages.setRows(roles.getList());
+			rolePages.setTotal(roles.getTotal());
+		}
+		
+		return rolePages;
+		
+	}
+	
+	
 	@RequestMapping("/addip")
 	public String addip() {
 		return "system/role/role_add";

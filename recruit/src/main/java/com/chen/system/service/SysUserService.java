@@ -42,6 +42,13 @@ public interface SysUserService {
 	
 	boolean deletes(Long[] id);
 	
-	boolean saveUserByDepartId(long departId,SysUser sysUser);
+	/**
+	 * 保存用户基本信息、所在组织信息、角色信息
+	 * @param departId
+	 * @param sysUser
+	 * @param roleIds
+	 * @return
+	 */
+	boolean saveUserByDepartId(long departId,SysUser sysUser,Long[] roleIds);
 	
 }

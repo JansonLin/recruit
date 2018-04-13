@@ -35,4 +35,12 @@ public interface SysRoleMapper {
     int updateByPrimaryKeySelective(SysRole record);
 
     int updateByPrimaryKey(SysRole record);
+    
+    /**
+     * 根据用户ID获取所属角色列表
+     * @param userId 用户ID
+     * @return
+     */
+    List<SysRole> getUserRole(@Param("userId") long userId);
+    
 }

@@ -116,15 +116,16 @@ function addip() {
 
 // 修改导航
 function editip(rowData) {
-	var title = "详细信息修改";
+	var title = resourceName +"详细信息修改";
 	var row;
 	if (null != rowData) {
 		row = rowData;
 	} else if (null != dataGrid.datagrid('getSelections')) {
 		row = dataGrid.datagrid('getSelections')[0];
 	}
+	console.log(row.id+"==========="+row.userName);
 	if (row) {
-		$('#mainIframe')[0].src = 'detailEditip?detailId=' + row.id;
+		$('#mainIframe')[0].src = 'editip?id=' + row.id;
 		$('#mainDialog').dialog({
 			title : title,
 			resizable : true,

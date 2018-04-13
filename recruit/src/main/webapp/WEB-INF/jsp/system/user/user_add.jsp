@@ -78,12 +78,12 @@
 	                        </select>
 	                    </div>
 	                   </li>
-	                  <li class="clearfix">
+	                 <!--  <li class="clearfix">
 	                    <span class="itemName" >备注</span>
 	                    <div class="itemCon">
 	                       <input class="easyui-textbox" name="remark" data-options="width:200,height:60,multiline:true" type="text" style="margin-top:10px;">
 	                    </div>
-	                    </li>
+	                    </li> -->
 	                </ul>               		
 			</form>
 		</div>

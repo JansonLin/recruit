@@ -11,11 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chen.common.util.Md5Util;
+import com.chen.system.entity.SysRole;
 import com.chen.system.entity.SysUser;
 import com.chen.system.entity.SysUserDepart;
 import com.chen.system.entity.SysUserExample;
+import com.chen.system.entity.SysUserRole;
 import com.chen.system.mapper.SysUserDepartMapper;
 import com.chen.system.mapper.SysUserMapper;
+import com.chen.system.mapper.SysUserRoleMapper;
 import com.chen.system.service.SysUserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -34,6 +37,9 @@ public class SysUserServiceImpl implements SysUserService {
     
 	@Autowired
 	private SysUserDepartMapper userDepartMapper;
+	
+	@Autowired
+	private SysUserRoleMapper userRoleMapper;
 	
 	@Override
 	public List<SysUser> list() {
@@ -105,7 +111,7 @@ public class SysUserServiceImpl implements SysUserService {
     
 	@Transactional
 	@Override
-	public boolean saveUserByDepartId(long departId, SysUser sysUser) {
+	public boolean saveUserByDepartId(long departId, SysUser sysUser,Long[] roleIds) {
 		
 		boolean flag = false;
 		
@@ -121,6 +127,7 @@ public class SysUserServiceImpl implements SysUserService {
 			flag=true;
 		}
 		
+		//保存用户组织关联信息
 		SysUserDepart userDepart = new SysUserDepart();
 		userDepart.setSysDepartId(departId);
 		userDepart.setSysUserId(sysUser.getId());
@@ -131,6 +138,22 @@ public class SysUserServiceImpl implements SysUserService {
 		int userDepartNum  = userDepartMapper.insert(userDepart);
 		if(userDepartNum<1) {
 			flag=false;
+		}
+		
+		if(null!=roleIds) {
+			for(int i=0;i<roleIds.length;i++) {
+				SysUserRole userRole = new SysUserRole();
+				userRole.setSysRoleId(roleIds[i]);
+				userRole.setSysUserId(sysUser.getId());
+				userRole.setCreateTime(new Date());
+				userRole.setCreator(sysUser.getCreator());
+				userRole.setUpdateTime(new Date());
+				userRole.setUpdator(sysUser.getUpdator());
+				int userRoleNum = userRoleMapper.insert(userRole);
+				if(userRoleNum<1) {
+					flag = false;
+				}
+			}
 		}
 		
 		return flag;

@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.chen.system.entity.SysRole;
 import com.chen.system.entity.SysRoleExample;
+import com.chen.system.entity.SysUserRole;
+import com.chen.system.entity.SysUserRoleExample;
 import com.chen.system.mapper.SysRoleMapper;
+import com.chen.system.mapper.SysUserRoleMapper;
 import com.chen.system.service.SysRoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -24,6 +27,9 @@ public class SysRoleServiceImpl implements SysRoleService{
     
 	@Autowired
 	private SysRoleMapper sysRoleMapper;
+	
+	@Autowired
+	private SysUserRoleMapper userRoleMapper;
 	
 	@Override
 	public PageInfo<SysRole> page(int pageNum, int pageSize, SysRoleExample example) {
@@ -71,6 +77,12 @@ public class SysRoleServiceImpl implements SysRoleService{
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public List<SysRole> getUserRole(long userId) {
+		List<SysRole> sysRole = sysRoleMapper.getUserRole(userId);
+		return sysRole;
 	}
 
 	
