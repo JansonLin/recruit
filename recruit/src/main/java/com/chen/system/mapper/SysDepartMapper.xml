@@ -411,4 +411,13 @@
       UPDATOR = #{updator,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=BIGINT}
   </update>
+  
+   <select id="getUserDepart" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select d.ID,d.DEPART_NAME, d.DEPART_CODE,d.DEPART_LEVEL,d.PARENT_DEPART_CODE,d.REMARK, 
+      d.STATUS,d.DELETED, d.CREATE_TIME, d.CREATOR
+      from sys_depart d,sys_user_depart ud where d.ID=ud.SYS_DEPART_ID 
+    and ud.SYS_USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+  
+  
 </mapper>

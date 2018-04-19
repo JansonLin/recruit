@@ -4,6 +4,7 @@ $(function() {
 	$('#limitTree').tree({
 		url : "limitTree",
 		checkbox:true,
+		cascadeCheck:false,
 	    onClick: function(node){
 		  $(this).tree('expand',node.target);  //展开	
 		}

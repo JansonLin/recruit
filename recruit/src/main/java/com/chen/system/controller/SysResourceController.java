@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,7 +22,9 @@ import com.chen.common.util.Message;
 import com.chen.common.util.Page;
 import com.chen.common.vo.TreeVo;
 import com.chen.system.entity.SysResource;
+import com.chen.system.entity.SysResourceExample;
 import com.chen.system.service.SysResourceService;
+import com.chen.system.service.SysUserService;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -32,10 +36,12 @@ import com.github.pagehelper.PageInfo;
  */
 @RequestMapping("/system/sysResource")
 @Controller
-public class SysResourceController {
+public class SysResourceController extends BaseController{
 
 	@Autowired
 	private SysResourceService sysResourceService;
+	
+	private SysUserService sysUserService;
     
 	@RequestMapping("/main")
 	public String main() {
@@ -71,10 +77,25 @@ public class SysResourceController {
 	}
 	
 	
+	
 	@RequestMapping("/rootTree")
 	@ResponseBody
-	public List<SysResource> rootTree() {
-		List<SysResource> rootList = sysResourceService.rootTree();
+	public List<SysResource> rootTree(HttpServletRequest request) {
+		List<SysResource> rootList = new ArrayList<>();
+		Set<Long> limitSet = limits(request);
+		SysResourceExample example = new SysResourceExample();
+		example.or().andparentIdEqualTo(0L);
+		List<SysResource> list = sysResourceService.list(example);
+		Iterator<Long> limits = limitSet.iterator();
+		while(limits.hasNext()){
+			long limitId = limits.next();
+			list.forEach(sysResource ->{
+				if(limitId==sysResource.getId()){
+					rootList.add(sysResource);
+					return;
+				}
+			});
+		}
 		return rootList;
 	}
 
@@ -88,27 +109,38 @@ public class SysResourceController {
 	 */
 	@RequestMapping("/tree")
 	@ResponseBody
-	public List<TreeVo> tree(Long id, ModelMap model) {
+	public List<TreeVo> tree(HttpServletRequest request,Long id, ModelMap model) {
+		
+		Set<Long> limitSet = limits(request);
+		
 		List<TreeVo> treeList = new ArrayList<TreeVo>();
 		List<SysResource> menus = sysResourceService.childByParentId(id);
 		if (null == menus || menus.size() < 1) {
 			return null;
 		}
+		
 		List<TreeVo> ctreeList = new ArrayList<TreeVo>();
 		for (SysResource cmenu : menus) {
-			TreeVo cvo = new TreeVo();
-			Map<String, Object> cattributes = new HashMap<>();
-			cvo.setId(cmenu.getId().toString());
-			cvo.setParentId(id.toString());
-			cvo.setText(cmenu.getResourceName());
-			cvo.setIconcls(cmenu.getResourceLogo());
-			cattributes.put("url", cmenu.getResourceUrl());
-			cvo.setAttributes(cattributes);
-			ctreeList.add(cvo);
-			treeList.add(cvo);
+			Iterator<Long> limits = limitSet.iterator();
+			while(limits.hasNext()){
+				long limitId = limits.next();
+				if(limitId==cmenu.getId()){
+					TreeVo cvo = new TreeVo();
+					Map<String, Object> cattributes = new HashMap<>();
+					cvo.setId(cmenu.getId().toString());
+					cvo.setParentId(id.toString());
+					cvo.setText(cmenu.getResourceName());
+					cvo.setIconcls(cmenu.getResourceLogo());
+					cattributes.put("url", cmenu.getResourceUrl());
+					cvo.setAttributes(cattributes);
+					ctreeList.add(cvo);
+					treeList.add(cvo);
+				}
+			}
 		}
 
 		return treeList;
+		
 	}
 	
 	
@@ -124,7 +156,9 @@ public class SysResourceController {
 			rVo.setId(0+"");
 			rVo.setText("菜单管理");
 			rVo.setState("open");
-			List<SysResource> rootList = sysResourceService.rootTree();
+			SysResourceExample example = new SysResourceExample();
+			example.or().andparentIdEqualTo(0L);
+			List<SysResource> rootList = sysResourceService.list(example);
 			List<TreeVo> cVos = new ArrayList<>();
 			if(null!=rootList&&rootList.size()>0) {
 				rootList.forEach(resource ->{

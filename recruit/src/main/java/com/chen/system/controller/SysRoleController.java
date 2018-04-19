@@ -16,6 +16,7 @@ import com.chen.common.util.Message;
 import com.chen.common.util.Page;
 import com.chen.common.vo.TreeVo;
 import com.chen.system.entity.SysResource;
+import com.chen.system.entity.SysResourceExample;
 import com.chen.system.entity.SysRole;
 import com.chen.system.entity.SysRoleExample;
 import com.chen.system.entity.SysUser;
@@ -200,7 +201,9 @@ public class SysRoleController extends BaseController {
 			rVo.setId(0 + "");
 			rVo.setText("蜗牛人才");
 			rVo.setState("open");
-			List<SysResource> rootList = sysResourceService.rootTree();
+			SysResourceExample example = new SysResourceExample();
+			example.or().andparentIdEqualTo(0l);
+			List<SysResource> rootList = sysResourceService.list(example);
 			List<TreeVo> cVos = new ArrayList<>();
 			if (null != rootList && rootList.size() > 0) {
 				rootList.forEach(resource -> {
@@ -225,7 +228,9 @@ public class SysRoleController extends BaseController {
 		rVo.setId(0 + "");
 		rVo.setText("蜗牛人才");
 		rVo.setState("open");
-		List<SysResource> rootList = sysResourceService.rootTree();
+		SysResourceExample example = new SysResourceExample();
+		example.or().andparentIdEqualTo(0l);
+		List<SysResource> rootList = sysResourceService.list(example);
 		List<TreeVo> cVos = new ArrayList<>();
 		if (null != rootList && rootList.size() > 0) {
 			rootList.forEach(resource -> {

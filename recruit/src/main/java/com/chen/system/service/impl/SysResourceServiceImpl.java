@@ -28,9 +28,7 @@ public class SysResourceServiceImpl implements SysResourceService{
 	private SysResourceMapper sysResourceMapper;
 	
 	@Override
-	public List<SysResource> rootTree() {
-		SysResourceExample example = new SysResourceExample();
-		example.or().andparentIdEqualTo(0L);
+	public List<SysResource> list(SysResourceExample example) {
         List<SysResource> rootList = sysResourceMapper.selectByExample(example);
 		return rootList;
 	}

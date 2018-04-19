@@ -43,4 +43,11 @@ public interface SysRoleMapper {
      */
     List<SysRole> getUserRole(@Param("userId") long userId);
     
+    /**
+     * 根据组织ID获取所属角色列表
+     * @param departId 组织ID
+     * @return
+     */
+    List<SysRole> getDepartRole(@Param("departId") long departId);
+    
 }

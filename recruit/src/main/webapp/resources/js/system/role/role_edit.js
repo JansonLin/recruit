@@ -15,9 +15,11 @@ $(function() {
         	 param.roleId = roleId;
          },*/
 		checkbox:true,
+		cascadeCheck:false,
 	    onClick: function(node){
 		  $(this).tree('expand',node.target);  //展开	
 		}
+		
 	});
 
 });

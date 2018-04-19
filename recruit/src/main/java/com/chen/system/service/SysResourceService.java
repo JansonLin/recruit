@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.chen.system.entity.SysResource;
+import com.chen.system.entity.SysResourceExample;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -18,10 +19,11 @@ public interface SysResourceService {
 	PageInfo<SysResource> page(int pageNum,int pageSize,long pid);
 	
 	/**
-	 * 获取根菜单列表
+	 * 条件获取菜单信息列表
+	 * @param example
 	 * @return
 	 */
-	List<SysResource> rootTree();
+	List<SysResource> list(SysResourceExample example);
 	
 	List<SysResource> childByParentId(Long parentId);
 	

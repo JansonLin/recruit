@@ -2,6 +2,7 @@ package com.chen.system.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.chen.system.entity.SysUser;
 import com.chen.system.entity.SysUserExample;
@@ -34,7 +35,12 @@ public interface SysUserService {
 	
 	PageInfo<SysUser> page(int pageNum,int pageSize);
 	
-	List<SysUser> list();
+	/**
+	 * 条件获取用户信息列表
+	 * @param example
+	 * @return
+	 */
+	List<SysUser> list(SysUserExample example);
 	
 	SysUser find(Long id);
 	
@@ -50,5 +56,12 @@ public interface SysUserService {
 	 * @return
 	 */
 	boolean saveUserByDepartId(long departId,SysUser sysUser,Long[] roleIds);
+	
+	/**
+	 * 获得用户权限列表
+	 * @param id
+	 * @return
+	 */
+	Set<Long> userLimits(long id);
 	
 }

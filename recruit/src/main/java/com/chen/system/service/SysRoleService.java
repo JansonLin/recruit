@@ -35,4 +35,11 @@ public interface SysRoleService {
 	 */
 	List<SysRole> getUserRole(long userId); 
 	
+	/**
+	 * 获取组织角色列表
+	 * @param departId
+	 * @return
+	 */
+	List<SysRole> getDepartRole(long departId);
+	
 }

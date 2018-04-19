@@ -85,6 +85,11 @@ public class SysRoleServiceImpl implements SysRoleService{
 		return sysRole;
 	}
 
+	@Override
+	public List<SysRole> getDepartRole(long departId) {
+		return null;
+	}
+
 	
 
 }

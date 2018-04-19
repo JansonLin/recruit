@@ -2,20 +2,50 @@ package com.chen.system.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+
+
+
+
+
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+
+
+
+
+
+
+
+import com.alibaba.druid.sql.visitor.functions.If;
 import com.chen.common.util.Md5Util;
+import com.chen.system.entity.SysDepart;
+import com.chen.system.entity.SysDepartExample;
+import com.chen.system.entity.SysDepartRole;
+import com.chen.system.entity.SysDepartRoleExample;
 import com.chen.system.entity.SysRole;
+import com.chen.system.entity.SysRoleExample;
 import com.chen.system.entity.SysUser;
 import com.chen.system.entity.SysUserDepart;
+import com.chen.system.entity.SysUserDepartExample;
 import com.chen.system.entity.SysUserExample;
 import com.chen.system.entity.SysUserRole;
+import com.chen.system.entity.SysUserRoleExample;
+import com.chen.system.mapper.SysDepartMapper;
+import com.chen.system.mapper.SysDepartRoleMapper;
+import com.chen.system.mapper.SysRoleMapper;
 import com.chen.system.mapper.SysUserDepartMapper;
 import com.chen.system.mapper.SysUserMapper;
 import com.chen.system.mapper.SysUserRoleMapper;
@@ -41,15 +71,15 @@ public class SysUserServiceImpl implements SysUserService {
 	@Autowired
 	private SysUserRoleMapper userRoleMapper;
 	
+	@Autowired
+	private SysDepartRoleMapper departRoleMapper;
+	
+	@Autowired
+	private SysRoleMapper sysRoleMapper;
+	
 	@Override
-	public List<SysUser> list() {
-		try {
-			List<SysUser> users = sysUserMapper.selectByExample(null);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return sysUserMapper.selectByExample(null);
+	public List<SysUser> list(SysUserExample example) {
+		return sysUserMapper.selectByExample(example);
 	}
 
 	@Override
@@ -157,6 +187,62 @@ public class SysUserServiceImpl implements SysUserService {
 		}
 		
 		return flag;
+		
+	}
+
+	@Override
+	public Set<Long> userLimits(long id) {
+		
+		Set<Long> roleIdSet = new HashSet<Long>();  
+		Set<Long> limitSet = new HashSet<>();
+		
+		SysUserDepartExample userDepartExample = new SysUserDepartExample();
+        userDepartExample.or().andSysUserIdEqualTo(id);
+		List<SysUserDepart> userDeparts = userDepartMapper.selectByExample(userDepartExample);
+		
+		if(null!=userDeparts&&userDeparts.size()>0){   //获取组织角色id
+			userDeparts.forEach(userDepart -> {
+				SysDepartRoleExample departRoleExample = new SysDepartRoleExample();
+				departRoleExample.or().andSysDepartIdEqualTo(userDepart.getSysDepartId());
+				List<SysDepartRole> departRoles = departRoleMapper.selectByExample(departRoleExample);
+				if(null!=departRoles&&departRoles.size()>0){
+					departRoles.forEach(departRole ->{
+						roleIdSet.add(departRole.getSysRoleId());
+					});
+				}
+			});
+		}
+		
+		SysUserRoleExample userRoleExample = new SysUserRoleExample();
+		userRoleExample.or().andSysUserIdEqualTo(id);
+		List<SysUserRole> userRoles = userRoleMapper.selectByExample(userRoleExample);
+		if(null!=userRoles&&userRoles.size()>0){   //获取用户角色ID
+			userRoles.forEach(userRole ->{
+				roleIdSet.add(userRole.getSysRoleId());
+			});
+		}
+		
+		if(roleIdSet.size()<1){
+			return null;
+		}
+		
+		SysRoleExample roleExample = new SysRoleExample();
+		roleExample.or().andIdIn(new ArrayList<>(roleIdSet));
+		List<SysRole> roles = sysRoleMapper.selectByExample(roleExample);
+        if(null==roles){
+          return null;
+        }
+		roles.forEach(role -> {
+			String limitStr = role.getLimits();
+			String[] limits = limitStr.split(",");
+			if(limits.length>0){
+				for(int i=0;i<limits.length;i++){
+					limitSet.add(Long.parseLong(limits[i]));
+				}
+			}
+		});
+		
+		return limitSet;
 		
 	}
 
